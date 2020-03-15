@@ -1,12 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./components/App";
+import {createStore, combineReducers} from "redux";
+import {Provider} from "react-redux";
+import PostsReducer from "./reducers/add-post-reducer";
+import newPostReducer from "./reducers/update-new-post-text-reducer";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const reducers = combineReducers({
+    posts: PostsReducer,
+    newPostText: newPostReducer
+});
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const store = createStore(reducers);
+
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById("root")
+);
