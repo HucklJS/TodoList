@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import App from "./components/App";
 import {createStore, combineReducers} from "redux";
 import {Provider} from "react-redux";
-import PostsReducer from "./reducers/add-post-reducer";
-import newPostReducer from "./reducers/update-new-post-text-reducer";
+import PostsReducer from "./reducers/posts-reducer";
+import newPostReducer from "./reducers/new-post-text-reducer";
 
 const reducers = combineReducers({
     posts: PostsReducer,
@@ -12,6 +12,8 @@ const reducers = combineReducers({
 });
 
 const store = createStore(reducers);
+
+window.store = store;
 
 ReactDOM.render(
     <Provider store={store}>

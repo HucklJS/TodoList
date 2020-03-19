@@ -1,7 +1,7 @@
 const add = value => ({type: "ADD-POST", value});
 const update = value => ({type: "UPDATE-NEW-POST-TEXT", value});
-const toggle = value => {
-    debugger;
-    return {type: "TOGGLE-DONE", value};
+const toggle = postId => {
+    return {type: "TOGGLE-DONE", postId};
 };
-export {add, update, toggle};
+const remove = () => ({type: "REMOVE-DONE-POSTS"});
+export {add, update, toggle, remove};

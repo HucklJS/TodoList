@@ -51,19 +51,30 @@ const AddBtn = styled(Btn)`
 
 let i = 0;
 
-const PostAddForm = ({inputText, add, update}) => {
+const PostAddForm = ({inputText, add, update, remove}) => {
     const onInputChange = e => {
         const value = e.target.value;
         update(value);
     };
 
-    const onNewPostAdd = () => {
+    const onNewPostAdd = e => {
+        e.preventDefault();
+
+        if (inputText === "") {
+            alert("Введите хоть что-то");
+            return;
+        }
+
         add({
             id: i++,
             message: inputText,
             isDone: false
         });
         update("");
+    };
+
+    const onPostRemove = () => {
+        remove();
     };
 
     return (
@@ -75,8 +86,10 @@ const PostAddForm = ({inputText, add, update}) => {
                 onChange={onInputChange}
             />
             <ButtonsBlock>
-                <CompletedBtn type="button">Hide completed</CompletedBtn>
-                <AddBtn type="button" onClick={onNewPostAdd}>
+                <CompletedBtn type="button" onClick={onPostRemove}>
+                    Hide completed
+                </CompletedBtn>
+                <AddBtn type="submit" onClick={onNewPostAdd}>
                     Add new
                 </AddBtn>
             </ButtonsBlock>

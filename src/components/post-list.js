@@ -34,7 +34,6 @@ const PostList = ({posts, toggle}) => {
         <PostListBlock>
             {posts.map(post => {
                 const {id, message, isDone} = post;
-                debugger;
                 return (
                     <Item key={id} isDone={isDone} onClick={() => toggle(id)}>
                         {message}
@@ -52,6 +51,7 @@ const mapStateToProps = store => {
 };
 
 const mapDispatchToProps = dispatch => {
+    debugger;
     return bindActionCreators(actions, dispatch);
 };
 
